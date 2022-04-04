@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +21,12 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	@Autowired
+	A a;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+		System.out.println(a);
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -32,28 +37,27 @@ public class HomeController {
 	
 	@GetMapping("insert")
 	public String insert() {
-		// db ¿¬°áÇÏ´Â °´Ã¼
+		// db ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Ã¼
 		Connection con = null;
-		// sql ¹® ´ã´Â °´Ã¼
-		
+		// sql ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
 		PreparedStatement pstmt = null;
 		try {
-			// mysql ¶óÀÌºê·¯¸® ÀÌ ÇÁ·ÎÁ§Æ®¿¡ ÀÖ´ÂÁö È®ÀÎ
+			// mysql ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 			// java -> class -> jar
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			// DB ¿¬°á
+			// DB ï¿½ï¿½ï¿½ï¿½
 			con = DriverManager
 					.getConnection
 					("jdbc:mysql://localhost:3306/spring5", "root", "1234");
-			// sql¹® ÀÛ¼º
+			// sqlï¿½ï¿½ ï¿½Û¼ï¿½
 			pstmt = con.prepareStatement(
 					"insert into member "
 					+ "(username,password) "
 					+ "values "
 					+ "('kk@naver.com','1223')");
-			pstmt.executeUpdate(); // ½ÇÇà
+			pstmt.executeUpdate(); // ï¿½ï¿½ï¿½ï¿½
 			
-			System.out.println("¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½");
 		}catch (Exception e) {
 			System.out.println(e);
 		}
