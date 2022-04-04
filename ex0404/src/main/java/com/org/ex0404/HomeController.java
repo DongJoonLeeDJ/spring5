@@ -23,24 +23,33 @@ public class HomeController {
 		return "home";
 	}
 	
+	// a 태그... 이용해서... 주소줄에.. 직접적어도됩니다.
 	@GetMapping("insert")
 	public String insert(Model model) {
 		return "insert";
 	}
 	
+	// form태그 이용해서 method post
 	@PostMapping("insert")
-	public String insert( @RequestParam String username, @RequestParam String password ) {
-		System.out.println("username = "+username);
-		System.out.println("password = "+password);
+	public String insert( Member member ) {
+		System.out.println(member);
 		System.out.println("여기에서 DB 저장 할계획");
 		return "insert";
 	}
 	
 //	@PostMapping("insert")
+//	public String insert( @RequestParam String username, @RequestParam String password ) {
+//		System.out.println("username = "+username);
+//		System.out.println("password = "+password);
+//		System.out.println("여기에서 DB 저장 할계획");
+//		return "insert";
+//	}
+	
+//	@PostMapping("insert")
 //	public String insert(HttpServletRequest request ) {
+//		request.setCharacterEncoding("utf-8");
 //		String u = request.getParameter("username");
 //		String p = request.getParameter("password");
-//		
 //		System.out.println("여기에서 DB 저장 할계획");
 //		return "insert";
 //	}
