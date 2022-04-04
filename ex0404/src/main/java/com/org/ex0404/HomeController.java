@@ -1,8 +1,10 @@
 package com.org.ex0404;
 
-import java.time.LocalDateTime;
 
-import javax.servlet.http.HttpServletRequest;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import com.mysql.cj.jdbc.Driver;
 
 @Controller
 public class HomeController {
@@ -34,7 +37,35 @@ public class HomeController {
 	public String insert( Member member ) {
 		System.out.println(member);
 		System.out.println("여기에서 DB 저장 할계획");
-		return "insert";
+		
+		// DB 연결객체
+		
+		// ctrl + shfit + o
+		Connection con = null;
+		// SQL 담는 객체
+		PreparedStatement pstmt = null;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/spring5", "root", "1234");
+			pstmt = con.prepareStatement("insert into member (username, password) values (?,?)");
+			pstmt.setString(1, member.getUsername());
+			pstmt.setString(2, member.getPassword());
+			
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		// response.sendRedict("asdf");
+		return "redirect:select";
+	}
+	
+	//jsp 같은 스프링... CRUD...
+	@GetMapping("select")
+	public String select() {
+		
+		return "select";
 	}
 	
 //	@PostMapping("insert")
