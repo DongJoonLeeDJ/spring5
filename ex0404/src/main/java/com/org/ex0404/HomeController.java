@@ -4,8 +4,11 @@ package com.org.ex0404;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	@Autowired
+	@Qualifier(value = "a1")
 	AA a1;
 	
 	@Autowired
+	@Qualifier(value = "a2")
 	AA a2;
 	
 	@Autowired
@@ -64,7 +69,17 @@ public class HomeController {
 	
 	//jsp 같은 스프링... CRUD...
 	@GetMapping("select")
-	public String select() {
+	public String select(Model model) {
+		
+		// DB에서 select 실행했는...
+		
+		List<Member> list = Arrays.asList(
+				new Member(1,"홍길동","패스워드22"),
+				new Member(2,"김길동","패스드"),
+				new Member(3,"박길동","패스워듬ㄴㅇㄹ"));
+		model.addAttribute("list", list);
+		
+		
 		return "select";
 	}
 	

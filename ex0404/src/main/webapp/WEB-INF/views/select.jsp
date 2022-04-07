@@ -1,3 +1,5 @@
+<%-- <%@page import="com.org.ex0404.Member"%> --%>
+<%-- <%@page import="java.util.List"%> --%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -49,6 +51,12 @@
 			select
 		</h1>
 		<p> select 를 학습하였습니다. </p>
+		
+		<%
+// 			List<Member> list = (List<Member>)request.getAttribute("list");
+// 			out.println(list);
+		%>
+		<c:out value="${list}"></c:out>
 	</div>
 </body>
 </html>

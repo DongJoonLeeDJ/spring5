@@ -1,5 +1,6 @@
 package com.org.ex0404;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -8,7 +9,14 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class MyConf {
 
 	@Bean
-	public AA aa() {
+	@Qualifier(value = "a1")
+	public AA a1() {
+		return new AA();
+	}
+	
+	@Bean
+	@Qualifier(value = "a2")
+	public AA a2() {
 		return new AA();
 	}
 	

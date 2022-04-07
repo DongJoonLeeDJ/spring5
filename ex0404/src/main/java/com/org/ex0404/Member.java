@@ -5,12 +5,17 @@ package com.org.ex0404;
 // VO 객체...
 // DTO 객체...
 public class Member {
+	private int id;
 	private String username;
 	private String password;
 
-	// 기본생성자
 	public Member() {}
-	// allargs 생성자
+	public Member(int id, String username, String password) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+	}
 	public Member(String username, String password) {
 		super();
 		this.username = username;
@@ -18,7 +23,13 @@ public class Member {
 	}
 	@Override
 	public String toString() {
-		return "Member [username=" + username + ", password=" + password + "]";
+		return "Member [id=" + id + ", username=" + username + ", password=" + password + "]";
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getUsername() {
 		return username;
