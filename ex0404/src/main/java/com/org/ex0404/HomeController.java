@@ -57,7 +57,7 @@ public class HomeController {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		// response.sendRedict("asdf");
+		// response.sendRedict("test");
 		return "redirect:select";
 	}
 	
