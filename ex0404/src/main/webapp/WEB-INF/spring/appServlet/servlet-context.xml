@@ -14,6 +14,10 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	
+<!-- 	<beans:bean class="com.org.ex0404.AA"> -->
+<!-- 		<beans:property name="myName" value="aaa"/> -->
+<!-- 	</beans:bean> -->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -22,6 +26,14 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.org.ex0404" />
+	
+	<!-- dataSource 설정, spring-jdbc 모듈 사용, spring 에서 jdbc 를 통해 mysql 에 접속할 수 있게 함 -->
+<!-- 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 	    <beans:property name="driverClassName" value="com.mysql.jdbc.Driver"></beans:property>  -->
+<!-- 	    <beans:property name="url" value="jdbc:mysql://35.200.109.72:3306/testdb?useSSL=false"></beans:property> -->
+<!-- 	    <beans:property name="username" value="root"></beans:property> -->
+<!-- 	    <beans:property name="password" value="비~밀"></beans:property> -->
+<!-- 	</beans:bean> -->
 	
 	
 	

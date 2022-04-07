@@ -30,7 +30,18 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ASer</servlet-name>
+		<servlet-class>com.org.ex0404.MySer</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>ASer</servlet-name>
+		<url-pattern>/ASer</url-pattern>
+	</servlet-mapping>
+	
 	<!-- 한글설정 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>

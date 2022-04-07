@@ -5,7 +5,6 @@ package com.org.ex0404;
 // VO 객체...
 // DTO 객체...
 public class Member {
-
 	private String username;
 	private String password;
 
