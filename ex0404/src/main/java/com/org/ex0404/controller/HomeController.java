@@ -1,15 +1,12 @@
 package com.org.ex0404.controller;
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,21 +14,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.org.ex0404.dao.MemberDao;
+import com.org.ex0404.dto.Member;
 import com.org.ex0404.study.AA;
 
-@Controller
+@Controller	
 public class HomeController {
-	
 	@Autowired
 	@Qualifier(value = "a1")
 	AA a1;
-	
 	@Autowired
 	@Qualifier(value = "a2")
 	AA a2;
-	
 	@Autowired
-	DriverManagerDataSource dataSource;
+	MemberDao dao;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
@@ -42,65 +38,22 @@ public class HomeController {
 		return "home";
 	}
 	
-	// a 태그... 이용해서... 주소줄에.. 직접적어도됩니다.
 	@GetMapping("insert")
 	public String insert(Model model) {
 		return "insert";
 	}
 	
-	// form태그 이용해서 method post
 	@PostMapping("insert")
 	public String insert( Member member ) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-//			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/spring5", "root", "1234");
-			con = dataSource.getConnection();
-			pstmt = con.prepareStatement("insert into member (username, password) values (?,?)");
-			pstmt.setString(1, member.getUsername());
-			pstmt.setString(2, member.getPassword());
-			
-			pstmt.executeUpdate();
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		// response.sendRedirect();
+		dao.insert(member);
 		return "redirect:select";
 	}
 	
-	//jsp 같은 스프링... CRUD...
 	@GetMapping("select")
 	public String select(Model model) {
-		
-		// DB에서 select 실행했는...
-		
-		List<Member> list = Arrays.asList(
-				new Member(1,"홍길동","패스워드22"),
-				new Member(2,"김길동","패스드"),
-				new Member(3,"박길동","패스워듬ㄴㅇㄹ"));
+		List<Member> list = dao.selectall();
 		model.addAttribute("list", list);
-		
-		
 		return "select";
 	}
-	
-//	@PostMapping("insert")
-//	public String insert( @RequestParam String username, @RequestParam String password ) {
-//		System.out.println("username = "+username);
-//		System.out.println("password = "+password);
-//		System.out.println("여기에서 DB 저장 할계획");
-//		return "insert";
-//	}
-	
-//	@PostMapping("insert")
-//	public String insert(HttpServletRequest request ) {
-//		request.setCharacterEncoding("utf-8");
-//		String u = request.getParameter("username");
-//		String p = request.getParameter("password");
-//		System.out.println("여기에서 DB 저장 할계획");
-//		return "insert";
-//	}
-	
 	
 }
