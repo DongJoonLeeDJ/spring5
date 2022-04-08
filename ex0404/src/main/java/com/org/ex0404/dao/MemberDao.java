@@ -2,6 +2,8 @@ package com.org.ex0404.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,10 +36,31 @@ public class MemberDao {
 	}
 	
 	public List<Member> selectall(){
-		return Arrays.asList(
-				new Member(1,"홍길동","패스워드22"),
-				new Member(2,"김길동","패스드"),
-				new Member(3,"박길동","패스워듬ㄴㅇㄹ"));
+		List<Member> list = new ArrayList();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement("select * from member");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Member member = new Member();
+				member.setId(rs.getInt("id"));
+				member.setPassword(rs.getString("password"));
+				member.setUsername(rs.getString("username"));
+				list.add(member);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
+	
 }
+
+
+
+
+

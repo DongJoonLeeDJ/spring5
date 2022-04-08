@@ -46,7 +46,7 @@
 			</div>
 		</div>
 	</nav>
-	<div class="container" style="background-color: #bbb;margin: 1rem auto 1rem auto">
+	<div class="container py-2" style="background-color: #bbb;margin: 1rem auto 1rem auto">
 		<h1>
 			select
 		</h1>
@@ -56,7 +56,27 @@
 // 			List<Member> list = (List<Member>)request.getAttribute("list");
 // 			out.println(list);
 		%>
-		<c:out value="${list}"></c:out>
+		<form>
+			<table class="table table-primary table-hover table-striped">
+				<tr class="table-success">
+					<th class="text-center">#</th>
+					<th>ID</th>
+					<th>USERNAME</th>
+					<th>PASSWORD</th>
+				</tr>
+				<c:forEach var="member" items="${list}">
+					<tr>
+						<td class="text-center"><input class="form-check-input" type="checkbox" name="id" value="${member.id}"></td>
+						<td>${member.id}</td>
+						<td>${member.username}</td>
+						<td>${member.password}</td>
+					</tr>
+				</c:forEach>
+			</table>
+			<div class="d-flex justify-content-end">
+				<input class="btn btn-primary" type="submit" value="삭제"/>
+			</div>
+		</form>
 	</div>
 </body>
 </html>
