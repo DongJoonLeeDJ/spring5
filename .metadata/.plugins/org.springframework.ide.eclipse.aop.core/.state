@@ -5,7 +5,8 @@
 <aop-project name="sp5-chap06"/>
 <aop-project name="sp5-chap07"/>
 <aop-project name="sp5-chap10"/>
-<aop-project name="sp5-chap03"/>
 <aop-project name="sp5-chap04"/>
 <aop-project name="sp5-chap05"/>
+<aop-project name="sp5-chap09"/>
+<aop-project name="sp5-chap03"/>
 </aop-reference-model>
