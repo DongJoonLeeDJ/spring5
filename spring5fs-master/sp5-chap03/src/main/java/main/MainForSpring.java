@@ -35,6 +35,8 @@ public class MainForSpring {
 				break;
 			}
 			if (command.startsWith("new ")) {
+				// new aa@naver.com aaa 11 11
+				// 0       1         2   3  4
 				processNewCommand(command.split(" "));
 				continue;
 			} else if (command.startsWith("change ")) {
@@ -54,11 +56,14 @@ public class MainForSpring {
 		}
 	}
 
+	// new aa@naver.com aaa 11 11
+	// 0       1         2   3  4
 	private static void processNewCommand(String[] arg) {
 		if (arg.length != 5) {
 			printHelp();
 			return;
 		}
+		// 스프링 객체통에서 MemberRegisterService 가져온나.,.
 		MemberRegisterService regSvc = 
 				ctx.getBean("memberRegSvc", MemberRegisterService.class);
 		RegisterRequest req = new RegisterRequest();
@@ -71,6 +76,7 @@ public class MainForSpring {
 			System.out.println("암호와 확인이 일치하지 않습니다.\n");
 			return;
 		}
+		
 		try {
 			regSvc.regist(req);
 			System.out.println("등록했습니다.\n");

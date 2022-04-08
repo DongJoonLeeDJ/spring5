@@ -2,6 +2,8 @@ package spring;
 
 import java.time.LocalDateTime;
 
+// 책 80쪽에 나오는 
+// 1. 생성자를 통한 DI 방식...
 public class MemberRegisterService {
 	private MemberDao memberDao;
 
