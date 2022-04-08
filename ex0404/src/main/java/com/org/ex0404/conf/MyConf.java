@@ -1,9 +1,11 @@
-package com.org.ex0404;
+package com.org.ex0404.conf;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import com.org.ex0404.study.AA;
 
 @Configuration
 public class MyConf {

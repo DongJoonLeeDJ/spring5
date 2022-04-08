@@ -1,4 +1,4 @@
-package com.org.ex0404;
+package com.org.ex0404.controller;
 
 
 import java.sql.Connection;
@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.org.ex0404.study.AA;
 
 @Controller
 public class HomeController {

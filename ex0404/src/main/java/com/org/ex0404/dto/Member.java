@@ -1,4 +1,4 @@
-package com.org.ex0404;
+package com.org.ex0404.dto;
 
 
 // command 객체..
