@@ -71,8 +71,11 @@ public class HomeController {
 	*/
 	
 	@PostMapping("delete")
-	public String delete( @RequestParam(name = "id",required = false) Integer id[] ) {
-		List<Integer> list = new ArrayList<Integer>();
+	public String delete( @RequestParam(
+							name = "id",
+							required = false) 
+							Integer id[] ) {
+		List<Integer> list = null;
 		if(id !=null) {
 			list = Arrays.asList(id);
 			System.out.println(list);
@@ -81,7 +84,6 @@ public class HomeController {
 		else {
 			System.out.println("id : null");
 		}
-		System.out.println("삭제 왔음..");
 		return "redirect:select";
 	}
 	
