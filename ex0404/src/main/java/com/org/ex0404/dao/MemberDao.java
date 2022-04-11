@@ -12,8 +12,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.org.ex0404.dto.Member;
 
-//membertable database access object
-// ctrl + shift + o
 public class MemberDao {
 	
 	@Autowired(required = true)
@@ -23,7 +21,6 @@ public class MemberDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
-			System.out.println(dataSource);
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement("insert into member (username, password) values (?,?)");
 			pstmt.setString(1, member.getUsername());
@@ -55,6 +52,35 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	// insert delete update pstmt.executeUpdate();
+	// select pstmt.executeQuery();
+	public void delete(List<Integer> list) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		// list [14,15,16]
+		
+		String ids = "";
+		
+		for(int i =0; i<list.size(); i++)
+		{
+			if(list.size()-1 ==i)
+				ids = ids + list.get(i);
+			else
+				ids = ids + list.get(i)+",";
+		}
+		
+//		ids = 14,15,16
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement("delete from member where id in ("+ids+")");
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

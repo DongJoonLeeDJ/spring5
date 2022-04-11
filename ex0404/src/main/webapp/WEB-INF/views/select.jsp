@@ -18,7 +18,6 @@
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	
-	
 </head>
 <body>
 <!-- ctrl + h -->
@@ -51,12 +50,11 @@
 			select
 		</h1>
 		<p> select 를 학습하였습니다. </p>
-		
 		<%
 // 			List<Member> list = (List<Member>)request.getAttribute("list");
 // 			out.println(list);
 		%>
-		<form>
+		<form action="delete" method="post">
 			<table class="table table-primary table-hover table-striped">
 				<tr class="table-success">
 					<th class="text-center">#</th>
@@ -66,7 +64,9 @@
 				</tr>
 				<c:forEach var="member" items="${list}">
 					<tr>
-						<td class="text-center"><input class="form-check-input" type="checkbox" name="id" value="${member.id}"></td>
+						<td class="text-center">
+							<input class="form-check-input" type="checkbox" name="id" value="${member.id}">
+						</td>
 						<td>${member.id}</td>
 						<td>${member.username}</td>
 						<td>${member.password}</td>
@@ -80,7 +80,6 @@
 	</div>
 </body>
 </html>
-
 
 
 

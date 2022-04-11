@@ -2,8 +2,11 @@ package com.org.ex0404.controller;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.org.ex0404.dao.MemberDao;
 import com.org.ex0404.dto.Member;
@@ -26,6 +30,7 @@ public class HomeController {
 	@Autowired
 	@Qualifier(value = "a2")
 	AA a2;
+	
 	@Autowired
 	MemberDao dao;
 	
@@ -56,4 +61,36 @@ public class HomeController {
 		return "select";
 	}
 	
+	/*
+	@PostMapping("delete")
+	public String delete(HttpServletRequest request) {
+		String id[] = request.getParameterValues("id");
+		System.out.println("삭제 왔음..");
+		return "redirect:select";
+	}
+	*/
+	
+	@PostMapping("delete")
+	public String delete( @RequestParam(name = "id",required = false) Integer id[] ) {
+		List<Integer> list = new ArrayList<Integer>();
+		if(id !=null) {
+			list = Arrays.asList(id);
+			System.out.println(list);
+			dao.delete(list);
+		}
+		else {
+			System.out.println("id : null");
+		}
+		System.out.println("삭제 왔음..");
+		return "redirect:select";
+	}
+	
 }
+
+
+
+
+
+
+
+
