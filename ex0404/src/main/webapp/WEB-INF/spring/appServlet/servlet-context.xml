@@ -39,6 +39,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
+<!-- // com.org.ex0404 -->
+<!-- // com.org.ex0404.controller -->
+<!-- // com.org.ex0404.dao -->
+<!-- // com.org.ex0404.service -->
+<!-- // @Componet @Repository @Service @Configuration -->
 	<context:component-scan
 		base-package="com.org.ex0404" />
 

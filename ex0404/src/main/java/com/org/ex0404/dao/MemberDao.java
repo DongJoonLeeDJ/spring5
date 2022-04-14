@@ -9,9 +9,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.stereotype.Repository;
 
 import com.org.ex0404.dto.Member;
 
+@Repository //저장소 
 public class MemberDao {
 	
 	@Autowired(required = true)
@@ -83,7 +85,47 @@ public class MemberDao {
 		}
 	}
 	
-	
+	public Member selectone(int id) {
+		Member member = new Member();
+		
+		Connection con = null;
+		PreparedStatement pstmt= null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement("select * from member where id = ?");
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				member.setId(rs.getInt("id"));
+				member.setUsername(rs.getString("username"));
+				member.setPassword(rs.getString("password"));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return member;
+	}
+
+
+	public boolean update(Member member) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(
+					"update member"
+					+ " set username=?, password=?"
+					+ " where id=?");
+			pstmt.setString(1, member.getUsername());
+			pstmt.setString(2, member.getPassword());
+			pstmt.setInt(3, member.getId());
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
 }
 
 

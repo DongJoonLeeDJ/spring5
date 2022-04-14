@@ -24,12 +24,12 @@ import com.org.ex0404.study.AA;
 
 @Controller	
 public class HomeController {
-	@Autowired
-	@Qualifier(value = "a1")
-	AA a1;
-	@Autowired
-	@Qualifier(value = "a2")
-	AA a2;
+//	@Autowired
+//	@Qualifier(value = "a1")
+//	AA a1;
+//	@Autowired
+//	@Qualifier(value = "a2")
+//	AA a2;
 	
 	@Autowired
 	MemberDao dao;
@@ -37,9 +37,9 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		model.addAttribute("aaa",  LocalDateTime.now() );
-		System.out.println("a1 = "+a1);
-		System.out.println("a2 = "+a2);
-		System.out.println("a1 == a2 ? = "+(a1==a2));
+//		System.out.println("a1 = "+a1);
+//		System.out.println("a2 = "+a2);
+//		System.out.println("a1 == a2 ? = "+(a1==a2));
 		return "home";
 	}
 	
@@ -85,6 +85,21 @@ public class HomeController {
 		return "redirect:select";
 	}
 	
+	@GetMapping("update")
+	public String update(int id,Model model) {
+		Member member = dao.selectone(id);
+		model.addAttribute("member", member);
+		return "update";
+	}
+	
+	@PostMapping("update")
+	public String update( Member member ) {
+//		requset.getParameter();
+		//DB 에서 수정을...해야되고..
+		System.out.println("일로오나..."+member);
+		dao.update(member);
+		return "redirect:select";
+	}
 }
 
 

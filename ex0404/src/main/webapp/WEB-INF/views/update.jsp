@@ -19,15 +19,25 @@
 	<%@ include file="head.jsp" %>
 	<div class="container" style="background-color: #bbb;margin: 1rem auto 1rem auto">
 		<h1>
-			insert
+			update
 		</h1>
-		<p> insert 를 학습하였습니다. </p>
+		<p> update 를 학습하였습니다. </p>
 		<form method="post" >
+			<input type="hidden" name="id"
+					value="${param.id}"/>
 			<label for="username">username</label>
-			<input id="username" class="form-control" type="text" name="username"/>
+			<input id="username" 
+					class="form-control" 
+					type="text" 
+					name="username"
+					value="${member.username}"/>
 			<label for="password">password</label>
-			<input id="password" class="form-control" type="text" name="password"/>
-			<input type="submit" class="btn btn-primary my-2" value="insert"/>
+			<input id="password" class="form-control" 
+					type="text" name="password"
+					value="${member.password}"/>
+			<input type="submit" 
+				class="btn btn-primary my-2"
+				 value="update"/>
 		</form>
 	</div>
 </body>
