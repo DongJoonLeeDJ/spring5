@@ -14,11 +14,17 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<!-- mysql 연결 할수 있는 jar -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.28</version>
+		</dependency>
+		<!-- spring jdbc datasource 객체 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>5.0.4.RELEASE</version>
 		</dependency>
 		<!-- Spring -->
 		<dependency>
@@ -122,11 +128,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>5.0.4.RELEASE</version>
-		</dependency>
+		
 	</dependencies>
     <build>
         <plugins>
